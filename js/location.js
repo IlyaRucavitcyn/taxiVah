@@ -1,10 +1,10 @@
-var map = L.map('map').setView([51.505, -0.09], 13);
+var map = L.map( 'map', {
+    center: [20.0, 5.0],
+    minZoom: 2,
+    zoom: 2
+});
 
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'mapbox.mapbox-terrain-v2',
-    accessToken: 'pk.eyJ1IjoiaWx5YXJ1Y2F2aXRjeW4iLCJhIjoiY2lrcXNoMDNzMDAwbndsa3Fjcm9nanBjbSJ9.-8wpn-qT9eywD8_1SUqiOw'
-}).addTo(map);
-
-var marker = L.marker([51.5, -0.09]).addTo(map);
+L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
+    subdomains: ['otile1','otile2','otile3','otile4']
+}).addTo( map );
