@@ -1,3 +1,20 @@
+var latlon = [];
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert('Geolocation is not suppurted');
+    };
+}
+
+function showPosition(pos) {
+  latlon.push('hello');
+}
+
+function showError(){
+  
+}
+
 var map = L.map( 'map', {
     center: [20.0, 5.0],
     minZoom: 2,
@@ -14,3 +31,6 @@ for ( var i=0; i < markers.length; ++i ) {
       .bindPopup( '<a href="' + markers[i].url + '" target="_blank">' + markers[i].name + '</a>' )
       .addTo( map );
 }
+
+var localization = document.getElementById('locating-button');
+localization.addEventListener('click', getLocation);

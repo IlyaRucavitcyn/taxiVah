@@ -1,0 +1,17 @@
+{
+  "name": "geolocation",
+  "version": "0.0.1",
+  "description": "Mobile Boilerplate is a professional front-end template that helps you build fast and robust mobile web applications. Spend more time developing and less time reinventing the wheel.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.13.4"
+  }
+}
