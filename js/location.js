@@ -10,6 +10,8 @@ function showPosition(pos) {
   var coords = [];
   coords.push(pos.coords.latitude);
   coords.push(pos.coords.longitude);
+  map.setView(coords,20);
+  L.marker(coords).addTo( map )
 }
 
 
@@ -24,11 +26,6 @@ L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
     subdomains: ['otile1','otile2','otile3','otile4']
 }).addTo( map );
 
-for ( var i=0; i < markers.length; ++i ) {
-   L.marker( [markers[i].lat, markers[i].lng] )
-      .bindPopup( '<a href="' + markers[i].url + '" target="_blank">' + markers[i].name + '</a>' )
-      .addTo( map );
-}
 
 var localization = document.getElementById('locating-button');
 localization.addEventListener('click', getLocation);
