@@ -1,19 +1,17 @@
-var latlon = [];
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
+        navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         alert('Geolocation is not suppurted');
     };
 }
 
 function showPosition(pos) {
-  latlon.push('hello');
+  var coords = [];
+  coords.push(pos.coords.latitude);
+  coords.push(pos.coords.longitude);
 }
 
-function showError(){
-  
-}
 
 var map = L.map( 'map', {
     center: [20.0, 5.0],
