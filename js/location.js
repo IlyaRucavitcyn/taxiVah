@@ -3,29 +3,38 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
         alert('Geolocation is not suppurted');
-    };
+    }
 }
 
 function showPosition(pos) {
-  var coords = [];
-  coords.push(pos.coords.latitude);
-  coords.push(pos.coords.longitude);
-  map.setView(coords,20);
-  L.marker(coords).addTo( map )
+    currentLocation = {
+      lat: pos.coords.latitude,
+      lng: pos.coords.longitude
+    };
+    map.setCenter(currentLocation);
+    // marker.setPosition(currentLocation)
 }
 
+var map, currentLocation, marker;
 
-var map = L.map( 'map', {
-    center: [20.0, 5.0],
-    minZoom: 2,
-    zoom: 2
-});
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15
+  });
 
-L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
-    subdomains: ['otile1','otile2','otile3','otile4']
-}).addTo( map );
+ //  marker = new google.maps.Marker({
+ //    map: map,
+ // });
+
+//  map.addListener('center_changed', function () {
+//    marker.setPosition(map.getCenter());
+//  })
+}
+
+getLocation();
 
 
-var localization = document.getElementById('locating-button');
-localization.addEventListener('click', getLocation);
+// var localization = document.getElementById('locating-button');
+// localization.addEventListener('click', function () {
+//   getLocation();
+// })

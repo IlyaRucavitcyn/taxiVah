@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "phonegap": "^5.5.2"
   }
 }
