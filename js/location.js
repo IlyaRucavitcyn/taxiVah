@@ -12,7 +12,7 @@ function showPosition(pos) {
       lng: pos.coords.longitude
     };
     map.setCenter(currentLocation);
-    centerCoordContainer.innerHTML = currentLocation['lat'].toFixed(4) + ' : ' + currentLocation['lng'].toFixed(4);
+    centerCoordContainer.innerHTML = currentLocation['lat'].toFixed(6) + ' : ' + currentLocation['lng'].toFixed(6);
 }
 
 var map, currentLocation, marker;
@@ -23,13 +23,10 @@ function initMap() {
     zoom: 15
   });
 
- //  marker = new google.maps.Marker({
- //    map: map,
- // });
-
- // map.addListener('center_changed', function () {
- //   marker.setPosition(map.getCenter());
- // })
+ map.addListener('center_changed', function () {
+   var center = map.getCenter();
+   centerCoordContainer.innerHTML = center.lat().toFixed(6) + ' : ' + center.lng().toFixed(6);
+ })
 }
 
 getLocation();
