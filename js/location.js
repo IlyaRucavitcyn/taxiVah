@@ -40,16 +40,16 @@ function initMap() {
     var center = map.getCenter();
     centerCoordContainer.innerHTML = center.lat().toFixed(6) + ' : ' + center.lng().toFixed(6);
 
-        geocoder.geocode({'location': { lat:center.lat(), lng: center.lng() }}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-          if (results[1]) {
-            input.value = results[1].formatted_address;
-          } else {
-            // window.alert('No results found');
-            input.value = "No results found";
-          }
+    geocoder.geocode({'location': { lat:center.lat(), lng: center.lng() }}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          input.value = results[0].formatted_address;
+        } else {
+          // window.alert('No results found');
+          input.value = "No results found";
         }
-      });
+      }
+    });
   })
 }
 
