@@ -12,10 +12,11 @@ function showPosition(pos) {
       lng: pos.coords.longitude
     };
     map.setCenter(currentLocation);
-    // marker.setPosition(currentLocation)
+    centerCoordContainer.innerHTML = currentLocation['lat'].toFixed(4) + ' : ' + currentLocation['lng'].toFixed(4);
 }
 
 var map, currentLocation, marker;
+var centerCoordContainer = document.getElementById('output');
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -26,9 +27,9 @@ function initMap() {
  //    map: map,
  // });
 
-//  map.addListener('center_changed', function () {
-//    marker.setPosition(map.getCenter());
-//  })
+ // map.addListener('center_changed', function () {
+ //   marker.setPosition(map.getCenter());
+ // })
 }
 
 getLocation();
