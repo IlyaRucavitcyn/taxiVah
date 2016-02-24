@@ -28,12 +28,17 @@ function initMap() {
   var input =  document.getElementById('pac-input');
   // map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
   autocomplete = new google.maps.places.Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
+  // autocomplete.bindTo('bounds', map);
+
+  autocomplete.addListener('place_changed', function() {
+    var place = autocomplete.getPlace();
+    map.setCenter(place.geometry.location)
+  });
 
   map.addListener('center_changed', function () {
     var center = map.getCenter();
     centerCoordContainer.innerHTML = center.lat().toFixed(6) + ' : ' + center.lng().toFixed(6);
- })
+  })
 }
 
 getLocation();
