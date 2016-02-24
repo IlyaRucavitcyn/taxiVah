@@ -15,9 +15,9 @@ function showPosition(pos) {
     centerCoordContainer.innerHTML = currentLocation['lat'].toFixed(6) + ' : ' + currentLocation['lng'].toFixed(6);
 }
 
-var map, currentLocation, marker, places;
+var map, currentLocation, marker;
 var centerCoordContainer = document.getElementById('output');
-var autocomplete;
+var autocomplete, geocoder;
 var countryRestrict = {'country': 'georgia'};
 
 function initMap() {
@@ -26,25 +26,31 @@ function initMap() {
   });
 
   var input =  document.getElementById('pac-input');
-  // map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
   autocomplete = new google.maps.places.Autocomplete(input);
   // autocomplete.bindTo('bounds', map);
+  geocoder = new google.maps.Geocoder;
 
   autocomplete.addListener('place_changed', function() {
     var place = autocomplete.getPlace();
-    map.setCenter(place.geometry.location)
+    map.setCenter(place.geometry.location);
+
   });
 
   map.addListener('center_changed', function () {
     var center = map.getCenter();
     centerCoordContainer.innerHTML = center.lat().toFixed(6) + ' : ' + center.lng().toFixed(6);
+
+        geocoder.geocode({'location': { lat:center.lat(), lng: center.lng() }}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            input.value = results[1].formatted_address;
+          } else {
+            // window.alert('No results found');
+            input.value = "No results found";
+          }
+        }
+      });
   })
 }
 
 getLocation();
-
-
-// var localization = document.getElementById('locating-button');
-// localization.addEventListener('click', function () {
-//   getLocation();
-// })
