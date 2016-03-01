@@ -30,7 +30,7 @@ function initMap() {
 
   autocomplete = new google.maps.places.Autocomplete(input);
   autocompleteSelfLocation = new google.maps.places.Autocomplete(inputSelfLocation);
-  
+
   geocoder = new google.maps.Geocoder;
 
   autocomplete.addListener('place_changed', function() {
@@ -97,7 +97,7 @@ var Start = Backbone.View.extend({
 var Locate = Backbone.View.extend({
   el:$("#self-location-container"),
   events:{
-    "click button.location":"locate"
+    "click button.self-location-button":"locate"
   },
   locate:function () {
     route.navigate("!/", true);
