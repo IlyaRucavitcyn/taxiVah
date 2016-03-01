@@ -17,7 +17,7 @@ function showPosition(pos) {
 
 var map, currentLocation, marker;
 var centerCoordContainer = document.getElementById('output');
-var autocomplete, geocoder;
+var autocomplete, autocompleteSelfLocation, geocoder;
 var countryRestrict = {'country': 'georgia'};
 
 function initMap() {
@@ -26,14 +26,21 @@ function initMap() {
   });
 
   var input =  document.getElementById('pac-input');
+  var inputSelfLocation = document.getElementById('pac-input-self-location');
+
   autocomplete = new google.maps.places.Autocomplete(input);
-  // autocomplete.bindTo('bounds', map);
+  autocompleteSelfLocation = new google.maps.places.Autocomplete(inputSelfLocation);
+  
   geocoder = new google.maps.Geocoder;
 
   autocomplete.addListener('place_changed', function() {
     var place = autocomplete.getPlace();
     map.setCenter(place.geometry.location);
+  });
 
+  autocompleteSelfLocation.addListener('place_changed', function() {
+    var place = autocompleteSelfLocation.getPlace();
+    map.setCenter(place.geometry.location);
   });
 
   map.addListener('center_changed', function () {
