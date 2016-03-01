@@ -71,14 +71,14 @@ textarea {
 }
 
 #screen-container{
-  display:none;
+  /*display:none;*/
 }
 
 #self-location-container{
   width:100%;
   height:100%;
   background-color:rgba(0,0,0,0.5);
-  /*display:none;*/
+  display:none;
 }
 
 

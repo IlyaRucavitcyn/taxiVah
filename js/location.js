@@ -54,3 +54,51 @@ function initMap() {
 }
 
 getLocation();
+
+// Creating backbone sceletone
+
+var Navig = Backbone.Router.extend({
+  routes: {
+    "": "start",
+    "!/": "start",
+    "!/location": "location",
+  },
+
+  start: function() {
+    $(".block").hide();
+    $("#screen-container").show();
+  },
+
+  location: function () {
+    $(".block").hide();
+    $("#self-location-container").show();
+  },
+});
+
+var route = new Navig();
+
+var Start = Backbone.View.extend({
+  el:$("#screen-container"),
+  events:{
+    "click button":"currentLocation"
+  },
+  currentLocation:function () {
+    route.navigate("!/location", true);
+  }
+});
+
+var Locate = Backbone.View.extend({
+  el:$("#self-location-container"),
+  events:{
+    "click button.location":"locate"
+  },
+  locate:function () {
+    route.navigate("!/", true);
+    getLocation();
+  }
+});
+
+var start = new Start();
+var locate = new Locate();
+
+Backbone.history.start();
