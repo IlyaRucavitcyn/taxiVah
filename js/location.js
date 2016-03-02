@@ -95,9 +95,6 @@ var Start = Backbone.View.extend({
   hide: function () {
     $(this.el).hide();
   }
-  // currentLocation:function () {
-  //   route.navigate("!/location", true);
-  // }
 });
 
 var Locate = Backbone.View.extend({
@@ -111,9 +108,6 @@ var Locate = Backbone.View.extend({
   hide: function () {
     $(this.el).hide();
   }
-  // locate:function () {
-  //   route.navigate("!/", true);
-  // }
 });
 
 var start = new Start();
