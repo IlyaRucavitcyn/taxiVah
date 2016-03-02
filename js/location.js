@@ -101,7 +101,6 @@ var Locate = Backbone.View.extend({
   },
   locate:function () {
     route.navigate("!/", true);
-    getLocation();
   }
 });
 
