@@ -89,9 +89,15 @@ var Start = Backbone.View.extend({
   events:{
     "click button":"currentLocation"
   },
-  currentLocation:function () {
-    route.navigate("!/location", true);
+  render: function () {
+    $(this.el).show();
+  },
+  hide: function () {
+    $(this.el).hide();
   }
+  // currentLocation:function () {
+  //   route.navigate("!/location", true);
+  // }
 });
 
 var Locate = Backbone.View.extend({
@@ -99,9 +105,15 @@ var Locate = Backbone.View.extend({
   events:{
     "click button.self-location-button":"locate"
   },
-  locate:function () {
-    route.navigate("!/", true);
+  render: function () {
+    $(this.el).show();
+  },
+  hide: function () {
+    $(this.el).hide();
   }
+  // locate:function () {
+  //   route.navigate("!/", true);
+  // }
 });
 
 var start = new Start();
