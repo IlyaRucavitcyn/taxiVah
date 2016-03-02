@@ -72,13 +72,13 @@ var Navig = Backbone.Router.extend({
   },
 
   start: function() {
-    $(".block").hide();
-    $("#screen-container").show();
+    locate.hide();
+    start.render();
   },
 
   location: function () {
-    $(".block").hide();
-    $("#self-location-container").show();
+    start.hide();
+    locate.render();
   },
 });
 
