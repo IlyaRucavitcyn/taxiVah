@@ -105,9 +105,15 @@ var Start = Backbone.View.extend({
         center: {lat: -34.397, lng: 150.644},
         zoom: 15
     });
+
     this.input =  document.getElementById('pac-input');
     this.autocomplete = new google.maps.places.Autocomplete(this.input);
     this.geocoder = new google.maps.Geocoder;
+
+    //   this.autocomplete.addListener('place_changed', function() {
+    //     var place = self.autocomplete.getPlace();
+    //     self.map.setCenter(place.geometry.location);
+    //   });
 
 
     this.map.addListener('center_changed', function () {
@@ -127,7 +133,11 @@ var Start = Backbone.View.extend({
   }
 });
 
+
 var Locate = Backbone.View.extend({
+  initialize: function () {
+    this.createSelfLocation();
+  },
   el:$("#self-location-container"),
   events:{
     "click button.self-location-button":"locate"
@@ -137,6 +147,11 @@ var Locate = Backbone.View.extend({
   },
   hide: function () {
     $(this.el).hide();
+  },
+  createSelfLocation: function () {
+    var self = this;
+    this.inputSelfLocation = document.getElementById('pac-input-self-location');
+    this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
   }
 });
 
