@@ -104,7 +104,7 @@ var Start = Backbone.View.extend({
   createMap: function () {
     var self = this;
     this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
+        center: {lat: 41.645833, lng: 41.641667},
         zoom: 15
     });
 
