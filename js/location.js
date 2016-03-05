@@ -65,6 +65,10 @@
 // Creating backbone sceletone
 
 var Navig = Backbone.Router.extend({
+  initialize: function () {
+    this.start = new Start();
+    this.locate = new Locate();
+  },
   routes: {
     "": "start",
     "!/": "start",
@@ -72,17 +76,15 @@ var Navig = Backbone.Router.extend({
   },
 
   start: function() {
-    locate.hide();
-    start.render();
+    this.locate.hide();
+    this.start.render();
   },
 
   location: function () {
-    start.hide();
-    locate.render();
+    this.start.hide();
+    this.locate.render();
   },
 });
-
-var route = new Navig();
 
 var Start = Backbone.View.extend({
 
@@ -155,7 +157,8 @@ var Locate = Backbone.View.extend({
   }
 });
 
-var start = new Start();
-var locate = new Locate();
+// var start = new Start();
+// var locate = new Locate();
+var route = new Navig();
 
 Backbone.history.start();
