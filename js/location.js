@@ -66,24 +66,33 @@
 
 var Navig = Backbone.Router.extend({
   initialize: function () {
-    this.start = new Start();
-    this.locate = new Locate();
+    var self = this;
+    if (!navigator.geolocation) {
+        this.start = new Start();
+        this.locate = new Locate();
+    } else {
+        this.start = new Start();
+        this.locate = new Locate();
+        navigator.geolocation.getCurrentPosition(function (pos) {
+          self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
+        });
+    }
   },
   routes: {
-    "": "start",
-    "!/": "start",
-    "!/location": "location"
+    "": "starting",
+    "!/": "starting",
+    "!/location": "locating"
   },
 
-  start: function() {
+  starting: function() {
     this.locate.hide();
     this.start.render();
   },
 
-  location: function () {
+  locating: function () {
     this.start.hide();
     this.locate.render();
-  },
+  }
 });
 
 var Start = Backbone.View.extend({
@@ -132,6 +141,9 @@ var Start = Backbone.View.extend({
             }
           });
     });
+  },
+  setMapCenter: function (center){
+    this.map.setCenter(center);
   }
 });
 
