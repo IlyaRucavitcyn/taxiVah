@@ -91,7 +91,7 @@ var Navig = Backbone.Router.extend({
 
   locating: function () {
     this.start.hide();
-    this.locate.render();
+    this.locate.render(this.locate.coordinates);
   }
 });
 
@@ -158,8 +158,8 @@ var Locate = Backbone.View.extend({
     "click button.self-location-button":"locate"
   },
   coordinates: "hello",
-  render: function () {
-    $("#template-container").html(this.template(this.coordinates));
+  render: function (position) {
+    $("#template-container").html(this.template(position));
     $(this.el).show();
   },
   hide: function () {
