@@ -152,11 +152,14 @@ var Locate = Backbone.View.extend({
   initialize: function () {
     this.createSelfLocation();
   },
+  template: _.template($('#self-location-link').html()),
   el:$("#self-location-container"),
   events:{
     "click button.self-location-button":"locate"
   },
+  coordinates: "hello",
   render: function () {
+    $("#template-container").html(this.template(this.coordinates));
     $(this.el).show();
   },
   hide: function () {
