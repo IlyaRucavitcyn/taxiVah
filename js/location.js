@@ -157,7 +157,7 @@ var Locate = Backbone.View.extend({
   events:{
     "click button.self-location-button":"locate"
   },
-  coordinates: "hello",
+  coordinates: {lat: 41.645833, lng: 41.641667},
   render: function (position) {
     $("#template-container").html(this.template(position));
     $(this.el).show();
@@ -169,6 +169,11 @@ var Locate = Backbone.View.extend({
     var self = this;
     this.inputSelfLocation = document.getElementById('pac-input-self-location');
     this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
+
+      this.autocompleteSelfLocation.addListener('place_changed', function() {
+        var place = self.autocomplete.getPlace();
+        self.coordinates = {lat:place.lat(), lng:place.lng()};
+      });
   }
 });
 
