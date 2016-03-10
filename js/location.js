@@ -67,12 +67,9 @@
 var Navig = Backbone.Router.extend({
   initialize: function () {
     var self = this;
-    if (!navigator.geolocation) {
-        this.start = new Start();
-        this.locate = new Locate();
-    } else {
-        this.start = new Start();
-        this.locate = new Locate();
+    this.start = new Start();
+    this.locate = new Locate();
+    if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
         });
@@ -101,9 +98,7 @@ var Start = Backbone.View.extend({
     this.createMap();
   },
   el:$("#screen-container"),
-  events:{
-    "click button":"currentLocation"
-  },
+
   render: function () {
     $(this.el).show();
   },
@@ -154,12 +149,10 @@ var Locate = Backbone.View.extend({
   },
   template: _.template($('#self-location-link').html()),
   el:$("#self-location-container"),
-  events:{
-    "click button.self-location-button":"locate"
-  },
+
   coordinates: {lat: 41.645833, lng: 41.641667},
-  render: function (position) {
-    $("#template-container").html(this.template(position));
+  render: function () {
+    $("#template-container").html(this.template());
     $(this.el).show();
   },
   hide: function () {
@@ -171,8 +164,10 @@ var Locate = Backbone.View.extend({
     this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
 
       this.autocompleteSelfLocation.addListener('place_changed', function() {
-        var place = self.autocomplete.getPlace();
-        self.coordinates = {lat:place.lat(), lng:place.lng()};
+        var place = self.autocompleteSelfLocation.getPlace();
+        self.coordinates.lat = place.geometry.location.lat();
+        self.coordinates.lng = place.geometry.location.lng();
+        $("#template-container").html(self.template());
       });
   }
 });
