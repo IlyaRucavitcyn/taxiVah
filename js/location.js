@@ -78,12 +78,20 @@ var Navig = Backbone.Router.extend({
   routes: {
     "": "starting",
     "!/": "starting",
+    "!/start/:location": "selfLocating",
     "!/location": "locating"
   },
 
   starting: function() {
     this.locate.hide();
     this.start.render();
+  },
+
+  selfLocating: function () {
+    var self = this;
+    this.locate.hide();
+    this.start.render();
+    this.start.setMapCenter(this.locate.coordinates);
   },
 
   locating: function () {
