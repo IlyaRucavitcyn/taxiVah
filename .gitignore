@@ -28,7 +28,7 @@ build/Release
 
 
 #final *.js file directory
-
+src
 
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git

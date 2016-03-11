@@ -7,13 +7,15 @@
     "doc": "doc"
   },
   "scripts": {
-    "start":"node app",
+    "start": "node app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "express": "^4.13.4",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^1.0.0",
     "phonegap": "^5.5.2"
   }
 }
