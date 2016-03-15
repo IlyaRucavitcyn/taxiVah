@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
         <meta http-equiv="cleartype" content="on">
 
+
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png">
@@ -23,6 +24,7 @@
         <!-- Tile icon for Win8 (144x144 + tile color) -->
         <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
         <meta name="msapplication-TileColor" content="#222222">
+        <meta name="theme-color" content="#000000">
 
         <!-- SEO: If mobile URL is different from desktop URL, add a canonical link to the desktop page -->
         <!--
@@ -72,14 +74,14 @@
       <div id="self-location-container" class="block">
         <input id="pac-input-self-location" class="controls" style="position: absolute; top: 5%; left: 50%; transform: translate(-50%, 0%); width: 600px; height: 40px;
         border: none; background-color: rgba(0,0,0,0.3); padding: 0 5px; font-size: 20px; color:white;" type="text" placeholder="Search for a place">
-        <div id="template-container" class="">
-          <script type="text/template" id="self-location-link">
-          <a href="#!/start/<%= this.coordinates.lat.toFixed(4)+"||"+ this.coordinates.lng.toFixed(6)%>" style="display:block; position: absolute; top: 5%; left: 67%; transform: translate(-50%, 0%); width: 40px; height: 40px;
+
+          
+          <a href="#!/" style="display:block; position: absolute; top: 5%; left: 67%; transform: translate(-50%, 0%); width: 40px; height: 40px;
           border: none; background-color: #4CAF50; padding: 0; font-size: 20px; color:white;">
             <img src="./img/signs.svg" alt="Get location" style="width:80%; height:80%; margin:10%;"/>
           </a>
-        </script>
-        </div>
+
+
 
         <a href="#!/" style="position: absolute; display:block; top: 40%; left: 50%; transform: translate(-50%, 0%); width: 200px;
         border: none; background-color: rgba(0,0,0,0.3); padding: 0 5px; font-size: 20px; color:white; text-align:center;">

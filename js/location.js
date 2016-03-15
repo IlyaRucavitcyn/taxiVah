@@ -11,19 +11,22 @@ var Navig = Backbone.Router.extend({
         });
     }
   },
-  carRequestData:{},
+  carRequestData:{
+    lat:41.6421855,
+    lng:41.6259929,
+    adress:"77/88 Chavchavadze St,Batumi,Грузия"
+  },
   routes: {
     "": "starting",
-    "!/": "starting",
-    "!/start/:location": "selfLocating",
+    "!/": "startingLocation",
     "!/location": "locating"
   },
-  starting: function() {
+  starting: function () {
+    var self = this;
     this.locate.hide();
     this.start.render();
   },
-
-  selfLocating: function () {
+  startingLocation: function () {
     var self = this;
     this.locate.hide();
     this.start.render();
@@ -34,7 +37,7 @@ var Navig = Backbone.Router.extend({
   },
   locating: function () {
     this.start.hide();
-    this.locate.render(this.locate.coordinates);
+    this.locate.render();
   }
 });
 
@@ -53,7 +56,7 @@ var Start = Backbone.View.extend({
   createMap: function () {
     var self = this;
     this.map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 41.645833, lng: 41.641667},
+        center: {lat: 41.6421855, lng: 41.6259929},
         zoom: 15
     });
     this.input =  document.getElementById('pac-input');
@@ -85,11 +88,8 @@ var Locate = Backbone.View.extend({
     this.createSelfLocation();
     this.router = options.router;
   },
-  template: _.template($('#self-location-link').html()),
   el:$("#self-location-container"),
-  coordinates: {lat: 41.645833, lng: 41.641667},
   render: function () {
-    $("#template-container").html(this.template());
     $(this.el).show();
   },
   hide: function () {
@@ -99,13 +99,11 @@ var Locate = Backbone.View.extend({
     var self = this;
     this.inputSelfLocation = document.getElementById('pac-input-self-location');
     this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
-
     this.autocompleteSelfLocation.addListener('place_changed', function() {
       var place = self.autocompleteSelfLocation.getPlace();
       self.router.carRequestData.lat = place.geometry.location.lat();
       self.router.carRequestData.lng = place.geometry.location.lng();
       self.router.carRequestData.adress = place.formatted_address;
-      $("#template-container").html(self.template());
     });
   }
 });
