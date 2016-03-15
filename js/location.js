@@ -3,8 +3,8 @@
 var Navig = Backbone.Router.extend({
   initialize: function () {
     var self = this;
-    this.start = new Start();
-    this.locate = new Locate();
+    this.start = new Start({router:self});
+    this.locate = new Locate({router:self});
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
@@ -41,6 +41,7 @@ var Navig = Backbone.Router.extend({
 var Start = Backbone.View.extend({
   initialize: function (options) {
     this.createMap();
+    this.router = options.router;
   },
   el:$("#screen-container"),
   render: function () {
@@ -64,9 +65,9 @@ var Start = Backbone.View.extend({
             if (status === google.maps.GeocoderStatus.OK) {
               if (results[0]) {
                 self.input.value = results[0].formatted_address;
-                route.carRequestData.lat = results[0].geometry.location.lat();
-                route.carRequestData.lng = results[0].geometry.location.lng();
-                route.carRequestData.adress = results[0].formatted_address;
+                self.router.carRequestData.lat = results[0].geometry.location.lat();
+                self.router.carRequestData.lng = results[0].geometry.location.lng();
+                self.router.carRequestData.adress = results[0].formatted_address;
               } else {
                 self.input.value = "No results found";
               }
@@ -80,8 +81,9 @@ var Start = Backbone.View.extend({
 });
 
 var Locate = Backbone.View.extend({
-  initialize: function () {
+  initialize: function (options) {
     this.createSelfLocation();
+    this.router = options.router;
   },
   template: _.template($('#self-location-link').html()),
   el:$("#self-location-container"),
@@ -100,9 +102,9 @@ var Locate = Backbone.View.extend({
 
     this.autocompleteSelfLocation.addListener('place_changed', function() {
       var place = self.autocompleteSelfLocation.getPlace();
-      route.carRequestData.lat = place.geometry.location.lat();
-      route.carRequestData.lng = place.geometry.location.lng();
-      route.carRequestData.adress = place.formatted_address;
+      self.router.carRequestData.lat = place.geometry.location.lat();
+      self.router.carRequestData.lng = place.geometry.location.lng();
+      self.router.carRequestData.adress = place.formatted_address;
       $("#template-container").html(self.template());
     });
   }
