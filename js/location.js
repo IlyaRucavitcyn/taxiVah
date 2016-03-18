@@ -41,6 +41,10 @@ var Navig = Backbone.Router.extend({
   }
 });
 
+var PhoneRequest = Backbone.View.extend({
+   el:$("#screen-telephone"); 
+});
+
 var Start = Backbone.View.extend({
   initialize: function (options) {
     this.createMap();
