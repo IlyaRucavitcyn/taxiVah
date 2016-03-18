@@ -5,11 +5,12 @@ var Navig = Backbone.Router.extend({
     var self = this;
     this.start = new Start({router:self});
     this.locate = new Locate({router:self});
+    this.phonerequest = new PhoneRequest();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
         });
-    }
+    };
   },
   carRequestData:{
     lat:41.6421855,
@@ -23,12 +24,17 @@ var Navig = Backbone.Router.extend({
   },
   starting: function () {
     var self = this;
-    this.locate.hide();
-    this.start.render();
+    $(".block").hide();
+    if(!localStorage.phone) {
+        self.phonerequest.render();
+    } else {
+        self.start.render();   
+    }
   },
   startingLocation: function () {
     var self = this;
-    this.locate.hide();
+    $(".block").hide();
+    // this.locate.hide();
     this.start.render();
     this.start.setMapCenter({
         lat: self.carRequestData.lat,
@@ -36,13 +42,26 @@ var Navig = Backbone.Router.extend({
     });
   },
   locating: function () {
-    this.start.hide();
+    $(".block").hide();
+    // this.start.hide();
     this.locate.render();
   }
 });
 
 var PhoneRequest = Backbone.View.extend({
-   el:$("#screen-telephone"); 
+   el:$("#phone-request"),
+   $phoneholder:$("#pac-input-phone"),
+   render: function () {
+    $(this.el).show()   
+   },
+   events:{
+     "click #phone-conformation" : function () {
+         localStorage['phone'] = this.$phoneholder.val();
+     }
+   },
+   hide: function () {
+    $(this.el).hide();
+  },
 });
 
 var Start = Backbone.View.extend({
