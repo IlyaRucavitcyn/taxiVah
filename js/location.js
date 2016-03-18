@@ -25,10 +25,10 @@ var Navig = Backbone.Router.extend({
   starting: function () {
     var self = this;
     $(".block").hide();
-    if(!localStorage.phone) {
+    if(!localStorage.getItem('phone')&&!sessionStorage.getItem('visited')) {
         self.phonerequest.render();
     } else {
-        self.start.render();   
+        self.start.render();
     }
   },
   startingLocation: function () {
@@ -52,11 +52,15 @@ var PhoneRequest = Backbone.View.extend({
    el:$("#phone-request"),
    $phoneholder:$("#pac-input-phone"),
    render: function () {
-    $(this.el).show()   
+    $(this.el).show()
    },
    events:{
      "click #phone-conformation" : function () {
-         localStorage['phone'] = this.$phoneholder.val();
+         localStorage.setItem('phone', this.$phoneholder.val());
+         sessionStorage.setItem("visited", true);
+     },
+     "click #phone-nonconformation" : function () {
+         sessionStorage.setItem("visited", true);
      }
    },
    hide: function () {
