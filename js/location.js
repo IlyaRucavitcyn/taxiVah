@@ -6,6 +6,7 @@ var Navig = Backbone.Router.extend({
     this.start = new Start({router:self});
     this.locate = new Locate({router:self});
     this.phonerequest = new PhoneRequest();
+    this.carRequest = new CarRequest({router:self});
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
@@ -20,7 +21,8 @@ var Navig = Backbone.Router.extend({
   routes: {
     "": "starting",
     "!/": "startingLocation",
-    "!/location": "locating"
+    "!/location": "locating",
+    "!/request":"request"
   },
   starting: function () {
     var self = this;
@@ -43,8 +45,11 @@ var Navig = Backbone.Router.extend({
   },
   locating: function () {
     $(".block").hide();
-    // this.start.hide();
     this.locate.render();
+  },
+  request:function () {
+    $(".block").hide();
+    this.carRequest.render();
   }
 });
 
@@ -116,6 +121,14 @@ var Locate = Backbone.View.extend({
     this.router = options.router;
   },
   el:$("#self-location-container"),
+  events:{
+    "click #self-locating-link" : function () {
+        var self = this;
+        self.router.carRequestData.lat = self.autocompleteSelfLocation.getPlace().geometry.location.lat();
+        self.router.carRequestData.lng = self.autocompleteSelfLocation.getPlace().geometry.location.lng();
+        self.router.carRequestData.adress = self.autocompleteSelfLocation.getPlace().formatted_address;
+    }
+  },
   render: function () {
     $(this.el).show();
   },
@@ -126,13 +139,33 @@ var Locate = Backbone.View.extend({
     var self = this;
     this.inputSelfLocation = document.getElementById('pac-input-self-location');
     this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
-    this.autocompleteSelfLocation.addListener('place_changed', function() {
-      var place = self.autocompleteSelfLocation.getPlace();
-      self.router.carRequestData.lat = place.geometry.location.lat();
-      self.router.carRequestData.lng = place.geometry.location.lng();
-      self.router.carRequestData.adress = place.formatted_address;
-    });
+    // this.autocompleteSelfLocation.addListener('place_changed', function() {
+    //   var place = self.autocompleteSelfLocation.getPlace();
+    //   self.router.carRequestData.lat = place.geometry.location.lat();
+    //   self.router.carRequestData.lng = place.geometry.location.lng();
+    //   self.router.carRequestData.adress = place.formatted_address;
+    // });
   }
+});
+
+var CarRequest = Backbone.View.extend({
+  initialize: function (options) {
+    this.router = options.router;
+  },
+  el:$("#car-request-container"),
+  render: function () {
+    this.setRequestAdress();
+    $(this.el).show();
+  },
+  hide: function () {
+    $(this.el).hide();
+  },
+  setRequestAdress: function () {
+    var self = this;
+    this.$inputAdress = $('#pac-input-car-request');
+    this.$inputAdress.val(self.router.carRequestData.adress);
+  }
+
 });
 
 var route = new Navig();

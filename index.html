@@ -67,6 +67,11 @@
             type="text" placeholder="Search for a place">
           </a>
 
+          <a href="#!/request" style="display:block; position: absolute; top: 80%; left: 50%; transform: translate(-50%, 0%); width: 200px; height: 40px;
+          border: none; background-color:rgba(0,0,0,0.3); padding: 0; font-size: 20px; color:white; text-align:center; line-height: 40px;">
+              GET A CAR
+          </a>
+
         <!-- <div id="output" class="" style="position: absolute; top: 5%; right: 5%; width: 250px; height: 40px; background-color: rgba(0,0,0,0.3);
         font-size: 20px; color:white; text-align: center; line-height: 40px;">Current position is not avaliable</div> -->
 
@@ -75,7 +80,7 @@
         <input id="pac-input-self-location" class="controls" style="position: absolute; top: 5%; left: 50%; transform: translate(-50%, 0%); width: 600px; height: 40px;
         border: none; background-color: rgba(0,0,0,0.3); padding: 0 5px; font-size: 20px; color:white;" type="text" placeholder="Search for a place">
 
-        <a href="#!/" style="display:block; position: absolute; top: 5%; left: 67%; transform: translate(-50%, 0%); width: 40px; height: 40px;
+        <a id="self-locating-link" href="#!/" style="display:block; position: absolute; top: 5%; left: 67%; transform: translate(-50%, 0%); width: 40px; height: 40px;
         border: none; background-color: #4CAF50; padding: 0; font-size: 20px; color:white;">
           <img src="./img/signs.svg" alt="Get location" style="width:80%; height:80%; margin:10%;"/>
         </a>
@@ -100,6 +105,15 @@
             border: none; background-color: rgba(250,230,230,0.3); padding: 0 5px; font-size: 20px; color:white; text-align:center; text-decoration:none;">
                     REFUSE PHONE INSERTING
            </a>
+      </div>
+      <div id="car-request-container" class="block">
+
+        <input id="pac-input-car-request" class="controls" style="position: absolute; top:5%; left: 50%; transform: translate(-50%, 0%); width: 600px; height: 40px;
+         border: none; background-color: rgba(0,0,0,0.3); padding: 0 5px; font-size: 20px; color:white;" type="text" placeholder="Enter your phone number">
+        <div style="position: absolute; top: 50%; left: 50%; transform:translate(-50%, 0%); width: 600px; height: 40px; background-color: rgba(0,0,0,0.3); padding: 0 5px;
+        font-size: 20px; color:white; text-align:center; line-height: 40px;">
+           Your request is being verified
+        </div>
       </div>
         <!-- Add your site or application content here -->
         <script src="js/vendor/jquery-2.1.0.min.js"></script>
