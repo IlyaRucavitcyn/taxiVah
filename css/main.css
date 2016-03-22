@@ -71,28 +71,43 @@ textarea {
 }
 
 #screen-container{
+  position:absolute;
+  width:100%;
+  height:100%;
   /*display:none;*/
 }
 
 #self-location-container{
+  position:absolute;
   width:100%;
   height:100%;
   background-color:rgba(0,0,0,0.5);
-  display:none;
+
 }
 
 #phone-request{
+  position:absolute;
   width:100%;
   height:100%;
   background-color:rgba(0,0,0,0.5);
-  display:none;
+
 }
 
 #car-request-container{
+  position:absolute;
   width:100%;
   height:100%;
   background-color:rgba(0,0,0,0.5);
-  display:none;
+
+}
+
+.block{
+  left:100%;
+  transition: left 1s ease-out 0.5s;
+}
+.active{
+  left:0%;
+  transition: left 1s ease-out 0.5s;
 }
 
 

@@ -26,7 +26,7 @@ var Navig = Backbone.Router.extend({
   },
   starting: function () {
     var self = this;
-    $(".block").hide();
+    $(".block").removeClass("active");
     if(!localStorage.getItem('phone')&&!sessionStorage.getItem('visited')) {
         self.phonerequest.render();
     } else {
@@ -35,7 +35,7 @@ var Navig = Backbone.Router.extend({
   },
   startingLocation: function () {
     var self = this;
-    $(".block").hide();
+    $(".block").removeClass("active");
     // this.locate.hide();
     this.start.render();
     this.start.setMapCenter({
@@ -44,11 +44,11 @@ var Navig = Backbone.Router.extend({
     });
   },
   locating: function () {
-    $(".block").hide();
+    $(".block").removeClass("active");
     this.locate.render();
   },
   request:function () {
-    $(".block").hide();
+    $(".block").removeClass("active");
     this.carRequest.render();
   }
 });
@@ -57,7 +57,7 @@ var PhoneRequest = Backbone.View.extend({
    el:$("#phone-request"),
    $phoneholder:$("#pac-input-phone"),
    render: function () {
-    $(this.el).show()
+    $(this.el).addClass("active")
    },
    events:{
      "click #phone-conformation" : function () {
@@ -80,7 +80,7 @@ var Start = Backbone.View.extend({
   },
   el:$("#screen-container"),
   render: function () {
-    $(this.el).show();
+    $(this.el).addClass("active");
   },
   hide: function () {
     $(this.el).hide();
@@ -130,7 +130,7 @@ var Locate = Backbone.View.extend({
     }
   },
   render: function () {
-    $(this.el).show();
+    $(this.el).addClass("active");
   },
   hide: function () {
     $(this.el).hide();
@@ -139,12 +139,6 @@ var Locate = Backbone.View.extend({
     var self = this;
     this.inputSelfLocation = document.getElementById('pac-input-self-location');
     this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
-    // this.autocompleteSelfLocation.addListener('place_changed', function() {
-    //   var place = self.autocompleteSelfLocation.getPlace();
-    //   self.router.carRequestData.lat = place.geometry.location.lat();
-    //   self.router.carRequestData.lng = place.geometry.location.lng();
-    //   self.router.carRequestData.adress = place.formatted_address;
-    // });
   }
 });
 
@@ -155,7 +149,7 @@ var CarRequest = Backbone.View.extend({
   el:$("#car-request-container"),
   render: function () {
     this.setRequestAdress();
-    $(this.el).show();
+    $(this.el).addClass("active");
   },
   hide: function () {
     $(this.el).hide();
