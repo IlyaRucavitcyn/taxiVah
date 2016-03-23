@@ -135,6 +135,41 @@ textarea {
   color:white;
 }
 
+.starting-location-route{
+  display:block;
+  position: absolute;
+  top: 9px;
+  right: 1%;
+  /*transform: translate(-50%, 0%); */
+  width: 49px;
+  height: 49px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(255,193,7);
+  padding: 0;
+  /*font-size: 20px;
+  color:white;*/
+}
+
+.starting-location-route img{
+    margin:10%;
+}
+
+.starting-route{
+  display:block;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 200px;
+  /*border: none; */
+  /*background-color: rgba(0,0,0,0.3); */
+  padding: 0 5px;
+  /*font-size: 20px;
+  color:white; */
+  text-align:center;
+}
+
 .location{
   width: 100%;
   margin: 20px auto;
