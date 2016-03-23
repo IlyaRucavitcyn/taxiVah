@@ -83,6 +83,19 @@ textarea {
   background: url('../location-pin-compact-flat/location-pin-compact-flat.svg') no-repeat;
 }
 
+.location-route{
+  display:block;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 50%;
+  height: 40px;
+  background-color: rgba(0,0,0,0.3);
+  text-align:center;
+  cursor: pointer
+}
+
 .location{
   width: 100%;
   margin: 20px auto;

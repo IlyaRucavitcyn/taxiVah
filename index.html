@@ -57,11 +57,10 @@
             <div id="screen-container" class="block">
                 <div id="map" class="map" style=""></div>
                 <div class="marker" style=""></div>
-                  <a  href="#!/location" style="display:block; position: absolute; top: 5%; left: 50%; transform: translate(-50%, 0%); width: 600px; height: 40px;
-                  background-color: rgba(0,0,0,0.3); text-align:center; cursor: pointer" type="text" placeholder="Search for a place">
-                    <input id="pac-input" type="text" class="controls" name="name" value="" style="width: 90%; height: 100%;
-                    border: none; background-color: transparent; text-align: center; font-size: 20px; color:white; cursor: pointer; outline: none;"
-                    type="text" placeholder="Search for a place" readonly>
+                  <a  class="location-route" href="#!/location" style="">
+                    <div class="mdl-textfield mdl-js-textfield ">
+                      <input id="pac-input" class="mdl-textfield__input" type="text" name="name" value="" placeholder="Search for a place" readonly>
+                    </div>
                   </a>
                   <a href="#!/request" style="display:block; position: absolute; top: 80%; left: 50%; transform: translate(-50%, 0%); width: 200px; height: 40px;
                   border: none; background-color:rgba(0,0,0,0.3); padding: 0; font-size: 20px; color:white; text-align:center; line-height: 40px;">
