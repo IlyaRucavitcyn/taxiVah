@@ -54,23 +54,25 @@
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header"></header>
         <main class="mdl-layout__content">
+
             <div id="screen-container" class="block">
                 <div id="map" class="map" style=""></div>
                 <div class="marker" style=""></div>
-                  <a  class="location-route" href="#!/location" style="">
-                    <div class="mdl-textfield mdl-js-textfield ">
-                      <input id="pac-input" class="mdl-textfield__input" type="text" name="name" value="" placeholder="Search for a place" readonly>
-                    </div>
-                  </a>
-                  <a href="#!/request" style="display:block; position: absolute; top: 80%; left: 50%; transform: translate(-50%, 0%); width: 200px; height: 40px;
-                  border: none; background-color:rgba(0,0,0,0.3); padding: 0; font-size: 20px; color:white; text-align:center; line-height: 40px;">
+                <a  class="location-route" href="#!/location" style="">
+                  <div class="mdl-textfield mdl-js-textfield ">
+                    <input id="pac-input" class="mdl-textfield__input" type="text" name="name" value="" placeholder="Search for a place" readonly>
+                  </div>
+                </a>
+                <a class="request-route mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="#!/request" style="">
                       GET A CAR
-                  </a>
+                </a>
             </div>
 
             <div id="self-location-container" class="block">
-              <input id="pac-input-self-location" class="controls" style="position: absolute; top: 5%; left: 50%; transform: translate(-50%, 0%); width: 600px; height: 40px;
-              border: none; background-color: rgba(0,0,0,0.3); padding: 0 5px; font-size: 20px; color:white;" type="text" placeholder="Search for a place">
+              <div class="autocomplete-container mdl-textfield mdl-js-textfield">
+                <input id="pac-input-self-location" class="mdl-textfield__input" style="" type="text" placeholder="Search for a place">
+              </div>
+
               <a id="self-locating-link" href="#!/" style="display:block; position: absolute; top: 5%; left: 67%; transform: translate(-50%, 0%); width: 40px; height: 40px;
               border: none; background-color: #4CAF50; padding: 0; font-size: 20px; color:white;">
                 <img src="./img/signs.svg" alt="Get location" style="width:80%; height:80%; margin:10%;"/>
