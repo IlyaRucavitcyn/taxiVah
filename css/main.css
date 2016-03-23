@@ -170,6 +170,47 @@ textarea {
   text-align:center;
 }
 
+.starting-route img{
+    margin:10px auto;
+}
+
+.phone-request-input-container{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 400px;
+  border: none;
+  background-color: rgb(124,77,255);
+  padding: 20px 5px;
+  color:white;
+}
+
+.starting-route-phone-conf{
+  display:block;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 200px;
+  border: none;
+  /*padding: 0 5px;
+  font-size: 20px;
+  color:white;
+  text-align:center;
+  text-decoration:none;*/
+}
+
+.starting-route-phone-nonconf{
+  display:block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 200px;
+  border: none;
+}
+
 .location{
   width: 100%;
   margin: 20px auto;
