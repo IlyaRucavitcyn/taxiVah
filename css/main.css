@@ -109,13 +109,12 @@ textarea {
   left:100%;
   opacity:0.3;
   transition: 1s linear;
-  /*transition: opacity 1s ease-out 0.5s;*/
 }
+
 .active{
   left:0%;
   opacity:1;
   transition: 1s linear;
-  /*transition: opacity 1s ease-out 0.5s;*/
 }
 
 

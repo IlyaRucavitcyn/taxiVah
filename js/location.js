@@ -96,7 +96,7 @@ var Start = Backbone.View.extend({
         zoom: 15
     });
     this.input =  document.getElementById('pac-input');
-    this.autocomplete = new google.maps.places.Autocomplete(this.input);
+    // this.autocomplete = new google.maps.places.Autocomplete(this.input);
     this.geocoder = new google.maps.Geocoder;
     this.map.addListener('center_changed', function () {
       var center = self.map.getCenter();
