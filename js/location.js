@@ -63,9 +63,13 @@ var PhoneRequest = Backbone.View.extend({
      "click #phone-conformation" : function () {
          localStorage.setItem('phone', this.$phoneholder.val());
          sessionStorage.setItem("visited", true);
+         Backbone.history.loadUrl();
+         return false;
      },
      "click #phone-nonconformation" : function () {
          sessionStorage.setItem("visited", true);
+         Backbone.history.loadUrl();
+         return false;
      }
    },
    hide: function () {
