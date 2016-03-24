@@ -23,6 +23,8 @@
         <!-- Tile icon for Win8 (144x144 + tile color) -->
         <meta name="msapplication-TileImage" content="img/touch/apple-touch-icon-144x144-precomposed.png">
         <meta name="msapplication-TileColor" content="#222222">
+        <meta name="theme-color" content="#FFC107">
+
 
         <!-- SEO: If mobile URL is different from desktop URL, add a canonical link to the desktop page -->
         <!--
@@ -58,7 +60,7 @@
             <div id="screen-container" class="block">
                 <div id="map" class="map" style=""></div>
                 <div class="marker" style=""></div>
-                <a  class="location-route" href="#!/location" style="">
+                <a  class="header-imitation" href="#!/location" style="">
                   <div class="mdl-textfield mdl-js-textfield ">
                     <input id="pac-input" class="mdl-textfield__input" type="text" name="name" value="" placeholder="Search for a place" readonly>
                   </div>
@@ -69,8 +71,10 @@
             </div>
 
             <div id="self-location-container" class="block">
-              <div class="autocomplete-container mdl-textfield mdl-js-textfield">
-                <input id="pac-input-self-location" class="mdl-textfield__input" style="" type="text" placeholder="Search for a place">
+              <div class="header-imitation">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input id="pac-input-self-location" class="mdl-textfield__input" style="" type="text" placeholder="Search for a place">
+                </div>
                 <a id="self-locating-link" class="starting-location-route" href="#!/" style="">
                   <img src="./img/signs.svg" alt="Get location" width="80%" height="80%"/>
                 </a>
@@ -83,8 +87,10 @@
             </div>
 
             <div id="phone-request" class="block">
-              <div class="phone-request-input-container mdl-textfield mdl-js-textfield">
-                <input id="pac-input-phone" class="mdl-textfield__input" style="" type="text" placeholder="Enter your phone number">
+              <div class="header-imitation">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input id="pac-input-phone" class="mdl-textfield__input" style="" type="text" placeholder="Enter your phone number">
+                </div>
               </div>
 
                  <a id="phone-conformation" class="starting-route-phone-conf mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="" style="">
@@ -97,8 +103,10 @@
             </div>
 
             <div id="car-request-container" class="block">
-              <div class="car-request-adress-container mdl-textfield mdl-js-textfield">
-                <input id="pac-input-car-request" class="mdl-textfield__input" style="" type="text" placeholder="Enter your phone number" readonly>
+              <div class="header-imitation">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input id="pac-input-car-request" class="mdl-textfield__input" style="" type="text" placeholder="Enter your phone number" readonly>
+                </div>
               </div>
 
               <div class="car-request-adress-container-message">
