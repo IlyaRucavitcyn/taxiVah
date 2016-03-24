@@ -1,4 +1,48 @@
-// Creating backbone sceletone
+var CarRequest = Backbone.View.extend({
+  initialize: function (options) {
+    this.router = options.router;
+  },
+
+  el:$("#car-request-container"),
+  render: function () {
+    this.setRequestAdress();
+    $(this.el).addClass("active");
+  },
+  hide: function () {
+    $(this.el).hide();
+  },
+  setRequestAdress: function () {
+    var self = this;
+    this.$inputAdress = $('#pac-input-car-request');
+    this.$inputAdress.val(self.router.carRequestData.adress);
+  }
+});
+
+var Locate = Backbone.View.extend({
+  initialize: function (options) {
+    this.createSelfLocation();
+    this.router = options.router;
+  },
+  el:$("#self-location-container"),
+  render: function () {
+    $(this.el).addClass("active");
+  },
+  hide: function () {
+    $(this.el).hide();
+  },
+  createSelfLocation: function () {
+    var self = this;
+    this.inputSelfLocation = document.getElementById('pac-input-self-location');
+    this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
+    this.autocompleteSelfLocation.addListener('place_changed', function () {
+      self.router.carRequestData.lat = self.autocompleteSelfLocation.getPlace().geometry.location.lat();
+      self.router.carRequestData.lng = self.autocompleteSelfLocation.getPlace().geometry.location.lng();
+      self.router.carRequestData.adress = self.autocompleteSelfLocation.getPlace().formatted_address;
+      Backbone.history.navigate('!/', {trigger:true});
+
+    })
+  }
+});
 
 var Navig = Backbone.Router.extend({
   initialize: function () {
@@ -118,51 +162,6 @@ var Start = Backbone.View.extend({
   }
 });
 
-var Locate = Backbone.View.extend({
-  initialize: function (options) {
-    this.createSelfLocation();
-    this.router = options.router;
-  },
-  el:$("#self-location-container"),
-  render: function () {
-    $(this.el).addClass("active");
-  },
-  hide: function () {
-    $(this.el).hide();
-  },
-  createSelfLocation: function () {
-    var self = this;
-    this.inputSelfLocation = document.getElementById('pac-input-self-location');
-    this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
-    this.autocompleteSelfLocation.addListener('place_changed', function () {
-      self.router.carRequestData.lat = self.autocompleteSelfLocation.getPlace().geometry.location.lat();
-      self.router.carRequestData.lng = self.autocompleteSelfLocation.getPlace().geometry.location.lng();
-      self.router.carRequestData.adress = self.autocompleteSelfLocation.getPlace().formatted_address;
-      Backbone.history.navigate('!/', {trigger:true});
-
-    })
-  }
-});
-
-var CarRequest = Backbone.View.extend({
-  initialize: function (options) {
-    this.router = options.router;
-  },
-  el:$("#car-request-container"),
-  render: function () {
-    this.setRequestAdress();
-    $(this.el).addClass("active");
-  },
-  hide: function () {
-    $(this.el).hide();
-  },
-  setRequestAdress: function () {
-    var self = this;
-    this.$inputAdress = $('#pac-input-car-request');
-    this.$inputAdress.val(self.router.carRequestData.adress);
-  }
-
-});
-
+// Creating backbone sceletone
 var route = new Navig();
 Backbone.history.start();
