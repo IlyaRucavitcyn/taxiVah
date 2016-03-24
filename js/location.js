@@ -36,7 +36,6 @@ var Navig = Backbone.Router.extend({
   startingLocation: function () {
     var self = this;
     $(".block").removeClass("active");
-    // this.locate.hide();
     this.start.render();
     this.start.setMapCenter({
         lat: self.carRequestData.lat,
@@ -125,14 +124,6 @@ var Locate = Backbone.View.extend({
     this.router = options.router;
   },
   el:$("#self-location-container"),
-  events:{
-    "click #self-locating-link" : function () {
-        var self = this;
-        self.router.carRequestData.lat = self.autocompleteSelfLocation.getPlace().geometry.location.lat();
-        self.router.carRequestData.lng = self.autocompleteSelfLocation.getPlace().geometry.location.lng();
-        self.router.carRequestData.adress = self.autocompleteSelfLocation.getPlace().formatted_address;
-    }
-  },
   render: function () {
     $(this.el).addClass("active");
   },
@@ -143,6 +134,13 @@ var Locate = Backbone.View.extend({
     var self = this;
     this.inputSelfLocation = document.getElementById('pac-input-self-location');
     this.autocompleteSelfLocation = new google.maps.places.Autocomplete(this.inputSelfLocation);
+    this.autocompleteSelfLocation.addListener('place_changed', function () {
+      self.router.carRequestData.lat = self.autocompleteSelfLocation.getPlace().geometry.location.lat();
+      self.router.carRequestData.lng = self.autocompleteSelfLocation.getPlace().geometry.location.lng();
+      self.router.carRequestData.adress = self.autocompleteSelfLocation.getPlace().formatted_address;
+      Backbone.history.navigate('!/', {trigger:true});
+
+    })
   }
 });
 
