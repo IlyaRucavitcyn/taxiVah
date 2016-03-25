@@ -212,7 +212,8 @@ var Start = Backbone.View.extend({
     var self = this;
     this.map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 41.6421855, lng: 41.6259929},
-        zoom: 15
+        zoom: 15,
+        mapTypeControl: false
     });
     this.input =  document.getElementById('pac-input');
     // this.autocomplete = new google.maps.places.Autocomplete(this.input);
