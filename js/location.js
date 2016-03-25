@@ -30,9 +30,10 @@ var Footer = Backbone.View.extend({
   },
   hideAll: function () {
     for (var key in this.objToHide){
-       this.objToHide[key].hide();
+        this.objToHide[key].hide();
     };
   },
+  $phoneholder:$("#pac-input-phone"),
   events:{
     "click #phone-conformation" : function () {
         localStorage.setItem('phone', this.$phoneholder.val());
@@ -180,7 +181,6 @@ var Navig = Backbone.Router.extend({
 
 var PhoneRequest = Backbone.View.extend({
    el:$("#phone-request"),
-   $phoneholder:$("#pac-input-phone"),
    render: function () {
     $(this.el).addClass("active")
    },
