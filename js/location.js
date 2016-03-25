@@ -16,16 +16,9 @@ var CarRequest = Backbone.View.extend({
     this.$inputAdress = $('#pac-input-car-request');
     this.$inputAdress.val(self.router.carRequestData.adress);
   },
-  hidingObj: {
-    header:{
-      $el1:$("#go-to-location"),
-      $el2:$("#return-starting-location")
-    },
-    footer:{
-      $el1:$("#phone-conformation"),
-      $el2:$("#phone-nonconformation"),
-      $el3:$("#car-getting")
-    }
+  showingObj: {
+    header:{ },
+    footer:{ }
   }
 });
 
@@ -35,9 +28,9 @@ var Footer = Backbone.View.extend({
     $el2:$("#car-getting"),
     $el3:$("#phone-nonconformation")
   },
-  showAll: function () {
+  hideAll: function () {
     for (var key in this.objToHide){
-      this.objToHide[key].show();
+      this.objToHide[key].hide();
     };
   },
   events:{
@@ -55,11 +48,11 @@ var Footer = Backbone.View.extend({
   },
   el:$("#footer-container"),
   render: function (obj) {
-    this.showAll();
+    this.hideAll();
     $(this.el).addClass("active");
     if (arguments.length){
       for (var key in obj){
-        obj[key].hide();
+        obj[key].show();
       }
     };
   }
@@ -70,18 +63,18 @@ var Header = Backbone.View.extend({
     $el1:$("#go-to-location"),
     $el2:$("#return-starting-location")
   },
-  showAll: function () {
+  hideAll: function () {
     for (var key in this.objToHide){
-      this.objToHide[key].show();
+      this.objToHide[key].hide();
     };
   },
   el:$("#header-container"),
   render: function (obj) {
-    this.showAll();
+    this.hideAll();
     $(this.el).addClass("active");
     if (arguments.length){
       for (var key in obj){
-        obj[key].hide();
+        obj[key].show();
       }
     };
   }
@@ -111,15 +104,11 @@ var Locate = Backbone.View.extend({
 
     })
   },
-  hidingObj: {
+  showingObj: {
     header:{
-      $el1:$("#go-to-location")
+      $el1:$("#return-starting-location")
     },
-    footer:{
-      $el1:$("#phone-conformation"),
-      $el2:$("#phone-nonconformation"),
-      $el3:$("#car-getting")
-    }
+    footer:{}
   }
 });
 
@@ -154,20 +143,20 @@ var Navig = Backbone.Router.extend({
     $(".block").removeClass("active");
     if(!localStorage.getItem('phone')&&!sessionStorage.getItem('visited')) {
         self.phonerequest.render();
-        self.header.render(self.phonerequest.hidingObj.header);
-        self.footer.render(self.phonerequest.hidingObj.footer);
+        self.header.render(self.phonerequest.showingObj.header);
+        self.footer.render(self.phonerequest.showingObj.footer);
     } else {
         self.start.render();
-        self.header.render(self.start.hidingObj.header);
-        self.footer.render(self.start.hidingObj.footer);
+        self.header.render(self.start.showingObj.header);
+        self.footer.render(self.start.showingObj.footer);
     }
   },
   startingLocation: function () {
     var self = this;
     $(".block").removeClass("active");
     this.start.render();
-    this.header.render(self.start.hidingObj.header);
-    this.footer.render(self.start.hidingObj.footer);
+    this.header.render(self.start.showingObj.header);
+    this.footer.render(self.start.showingObj.footer);
     this.start.setMapCenter({
         lat: self.carRequestData.lat,
         lng: self.carRequestData.lng
@@ -177,15 +166,15 @@ var Navig = Backbone.Router.extend({
     var self =this;
     $(".block").removeClass("active");
     this.locate.render();
-    self.header.render(self.locate.hidingObj.header);
-    self.footer.render(self.locate.hidingObj.footer);
+    self.header.render(self.locate.showingObj.header);
+    self.footer.render(self.locate.showingObj.footer);
   },
   request:function () {
     var self =this;
     $(".block").removeClass("active");
     this.carRequest.render();
-    this.header.render(self.carRequest.hidingObj.header);
-    this.footer.render(self.carRequest.hidingObj.footer);
+    this.header.render(self.carRequest.showingObj.header);
+    this.footer.render(self.carRequest.showingObj.footer);
   }
 });
 
@@ -195,29 +184,14 @@ var PhoneRequest = Backbone.View.extend({
    render: function () {
     $(this.el).addClass("active")
    },
-  //  events:{
-  //    "click #phone-conformation" : function () {
-  //        localStorage.setItem('phone', this.$phoneholder.val());
-  //        sessionStorage.setItem("visited", true);
-  //        Backbone.history.loadUrl();
-  //        return false;
-  //    },
-  //    "click #phone-nonconformation" : function () {
-  //        sessionStorage.setItem("visited", true);
-  //        Backbone.history.loadUrl();
-  //        return false;
-  //    }
-  //  },
    hide: function () {
     $(this.el).hide();
   },
-  hidingObj: {
-    header:{
-      $el1:$("#go-to-location"),
-      $el2:$("#return-starting-location")
-    },
+  showingObj: {
+    header:{ },
     footer:{
-      $el1:$("#car-getting")
+      $el1:$("#phone-conformation"),
+      $el2:$("#phone-nonconformation")
     }
   }
 });
@@ -262,13 +236,12 @@ var Start = Backbone.View.extend({
   setMapCenter: function (center){
     this.map.setCenter(center);
   },
-  hidingObj: {
+  showingObj: {
     header:{
-      $el1:$("#return-starting-location")
+      $el1:$("#go-to-location")
     },
     footer:{
-      $el1:$("#phone-conformation"),
-      $el2:$("#phone-nonconformation")
+      $el3:$("#car-getting")
     }
   }
 });
