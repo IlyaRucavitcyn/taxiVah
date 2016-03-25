@@ -30,7 +30,7 @@ var Footer = Backbone.View.extend({
   },
   hideAll: function () {
     for (var key in this.objToHide){
-        this.objToHide[key].hide();
+        this.objToHide[key].addClass('invisible');
     };
   },
   $phoneholder:$("#pac-input-phone"),
@@ -53,7 +53,7 @@ var Footer = Backbone.View.extend({
     $(this.el).addClass("active");
     if (arguments.length){
       for (var key in obj){
-        obj[key].show();
+        obj[key].removeClass('invisible').addClass('visible');
       }
     };
   }
@@ -66,7 +66,7 @@ var Header = Backbone.View.extend({
   },
   hideAll: function () {
     for (var key in this.objToHide){
-      this.objToHide[key].hide();
+      this.objToHide[key].addClass('invisible');
     };
   },
   el:$("#header-container"),
@@ -75,7 +75,7 @@ var Header = Backbone.View.extend({
     $(this.el).addClass("active");
     if (arguments.length){
       for (var key in obj){
-        obj[key].show();
+        obj[key].removeClass('invisible').addClass("visible");
       }
     };
   }
