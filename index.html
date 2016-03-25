@@ -55,13 +55,13 @@
     </head>
     <body>
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-          <a href="#!/" class="mdl-layout__drawer-button">
+        <header id="header-container" class="mdl-layout__header block">
+          <a id="return-starting-location" href="#!/" class="mdl-layout__drawer-button">
             <i class="material-icons">arrow_back</i>
           </a>
           <div class="mdl-layout__header-row">
             <!-- <div class="mdl-layout-spacer"></div> -->
-            <a href="#!/location" class="header-imitation mdl-navigation__link mdl-textfield mdl-js-textfield">
+            <a id="go-to-location" href="#!/location" class="header-imitation mdl-navigation__link mdl-textfield mdl-js-textfield">
               <input id="pac-input" class="mdl-textfield__input" type="text" name="name" value="" placeholder="Search for a place" readonly>
             </a>
           </div>
@@ -82,11 +82,11 @@
             </div>
 
             <div id="self-location-container" class="block">
-              <div class="header-imitation">
+              <!-- <div class="header-imitation">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input id="pac-input-self-location" class="mdl-textfield__input" style="" type="text" placeholder="Search for a place">
                 </div>
-              </div>
+              </div> -->
 
 
               <a class="starting-route mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="#">
@@ -95,11 +95,11 @@
             </div>
 
             <div id="phone-request" class="block">
-              <div class="header-imitation">
+              <!-- <div class="header-imitation">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input id="pac-input-phone" class="mdl-textfield__input" style="" type="text" placeholder="Enter your phone number">
                 </div>
-              </div>
+              </div> -->
 
                  <a id="phone-conformation" class="starting-route-phone-conf mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="" style="">
                           CONFIRM THE PHONE
@@ -111,11 +111,11 @@
             </div>
 
             <div id="car-request-container" class="block">
-              <div class="header-imitation">
+              <!-- <div class="header-imitation">
                 <div class="mdl-textfield mdl-js-textfield">
                   <input id="pac-input-car-request" class="mdl-textfield__input" style="" type="text" placeholder="Enter your phone number" readonly>
                 </div>
-              </div>
+              </div> -->
 
               <div class="car-request-adress-container-message">
                  <span>Your request is being verified</span></br>

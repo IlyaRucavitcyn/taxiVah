@@ -15,10 +15,27 @@ var CarRequest = Backbone.View.extend({
     var self = this;
     this.$inputAdress = $('#pac-input-car-request');
     this.$inputAdress.val(self.router.carRequestData.adress);
+  },
+  hidingObj: {
+    $el1:$("#go-to-location"),
+    $el2:$("#return-starting-location")
   }
 });
 
-
+var Header = Backbone.View.extend({
+  initialize: function (options) {
+    this.router = options.router;
+  },
+  el:$("#header-container"),
+  render: function (obj) {
+    $(this.el).addClass("active");
+    if (arguments.length){
+      for (var key in obj){
+        obj[key].hide();
+      }
+    };  
+  }
+});
 
 var Locate = Backbone.View.extend({
   initialize: function (options) {
@@ -43,6 +60,9 @@ var Locate = Backbone.View.extend({
       Backbone.history.navigate('!/', {trigger:true});
 
     })
+  },
+  hidingObj: {
+    $el1:$("#go-to-location")
   }
 });
 
@@ -120,6 +140,10 @@ var PhoneRequest = Backbone.View.extend({
    hide: function () {
     $(this.el).hide();
   },
+  hidingObj: {
+    $el1:$("#go-to-location"),
+    $el2:$("#return-starting-location")
+  }
 });
 
 var Start = Backbone.View.extend({
@@ -161,6 +185,9 @@ var Start = Backbone.View.extend({
   },
   setMapCenter: function (center){
     this.map.setCenter(center);
+  },
+  hidingObj: {
+    $el1:$("#return-starting-location")
   }
 });
 
