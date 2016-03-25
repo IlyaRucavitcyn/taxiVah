@@ -17,8 +17,51 @@ var CarRequest = Backbone.View.extend({
     this.$inputAdress.val(self.router.carRequestData.adress);
   },
   hidingObj: {
-    $el1:$("#go-to-location"),
-    $el2:$("#return-starting-location")
+    header:{
+      $el1:$("#go-to-location"),
+      $el2:$("#return-starting-location")
+    },
+    footer:{
+      $el1:$("#phone-conformation"),
+      $el2:$("#phone-nonconformation"),
+      $el3:$("#car-getting")
+    }
+  }
+});
+
+var Footer = Backbone.View.extend({
+  objToHide:{
+    $el1:$("#phone-conformation"),
+    $el2:$("#car-getting"),
+    $el3:$("#phone-nonconformation")
+  },
+  showAll: function () {
+    for (var key in this.objToHide){
+      this.objToHide[key].show();
+    };
+  },
+  events:{
+    "click #phone-conformation" : function () {
+        localStorage.setItem('phone', this.$phoneholder.val());
+        sessionStorage.setItem("visited", true);
+        Backbone.history.loadUrl();
+        return false;
+    },
+    "click #phone-nonconformation" : function () {
+        sessionStorage.setItem("visited", true);
+        Backbone.history.loadUrl();
+        return false;
+    }
+  },
+  el:$("#footer-container"),
+  render: function (obj) {
+    this.showAll();
+    $(this.el).addClass("active");
+    if (arguments.length){
+      for (var key in obj){
+        obj[key].hide();
+      }
+    };
   }
 });
 
@@ -69,7 +112,14 @@ var Locate = Backbone.View.extend({
     })
   },
   hidingObj: {
-    $el1:$("#go-to-location")
+    header:{
+      $el1:$("#go-to-location")
+    },
+    footer:{
+      $el1:$("#phone-conformation"),
+      $el2:$("#phone-nonconformation"),
+      $el3:$("#car-getting")
+    }
   }
 });
 
@@ -81,6 +131,7 @@ var Navig = Backbone.Router.extend({
     this.phonerequest = new PhoneRequest();
     this.carRequest = new CarRequest({router:self});
     this.header = new Header();
+    this.footer = new Footer();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
@@ -103,17 +154,20 @@ var Navig = Backbone.Router.extend({
     $(".block").removeClass("active");
     if(!localStorage.getItem('phone')&&!sessionStorage.getItem('visited')) {
         self.phonerequest.render();
-        self.header.render(self.phonerequest.hidingObj);
+        self.header.render(self.phonerequest.hidingObj.header);
+        self.footer.render(self.phonerequest.hidingObj.footer);
     } else {
         self.start.render();
-        self.header.render(self.start.hidingObj);
+        self.header.render(self.start.hidingObj.header);
+        self.footer.render(self.start.hidingObj.footer);
     }
   },
   startingLocation: function () {
     var self = this;
     $(".block").removeClass("active");
     this.start.render();
-    this.header.render(self.start.hidingObj);
+    this.header.render(self.start.hidingObj.header);
+    this.footer.render(self.start.hidingObj.footer);
     this.start.setMapCenter({
         lat: self.carRequestData.lat,
         lng: self.carRequestData.lng
@@ -123,13 +177,15 @@ var Navig = Backbone.Router.extend({
     var self =this;
     $(".block").removeClass("active");
     this.locate.render();
-    self.header.render(self.locate.hidingObj);
+    self.header.render(self.locate.hidingObj.header);
+    self.footer.render(self.locate.hidingObj.footer);
   },
   request:function () {
     var self =this;
     $(".block").removeClass("active");
     this.carRequest.render();
-    this.header.render(self.carRequest.hidingObj);
+    this.header.render(self.carRequest.hidingObj.header);
+    this.footer.render(self.carRequest.hidingObj.footer);
   }
 });
 
@@ -139,25 +195,30 @@ var PhoneRequest = Backbone.View.extend({
    render: function () {
     $(this.el).addClass("active")
    },
-   events:{
-     "click #phone-conformation" : function () {
-         localStorage.setItem('phone', this.$phoneholder.val());
-         sessionStorage.setItem("visited", true);
-         Backbone.history.loadUrl();
-         return false;
-     },
-     "click #phone-nonconformation" : function () {
-         sessionStorage.setItem("visited", true);
-         Backbone.history.loadUrl();
-         return false;
-     }
-   },
+  //  events:{
+  //    "click #phone-conformation" : function () {
+  //        localStorage.setItem('phone', this.$phoneholder.val());
+  //        sessionStorage.setItem("visited", true);
+  //        Backbone.history.loadUrl();
+  //        return false;
+  //    },
+  //    "click #phone-nonconformation" : function () {
+  //        sessionStorage.setItem("visited", true);
+  //        Backbone.history.loadUrl();
+  //        return false;
+  //    }
+  //  },
    hide: function () {
     $(this.el).hide();
   },
   hidingObj: {
-    $el1:$("#go-to-location"),
-    $el2:$("#return-starting-location")
+    header:{
+      $el1:$("#go-to-location"),
+      $el2:$("#return-starting-location")
+    },
+    footer:{
+      $el1:$("#car-getting")
+    }
   }
 });
 
@@ -202,7 +263,13 @@ var Start = Backbone.View.extend({
     this.map.setCenter(center);
   },
   hidingObj: {
-    $el1:$("#return-starting-location")
+    header:{
+      $el1:$("#return-starting-location")
+    },
+    footer:{
+      $el1:$("#phone-conformation"),
+      $el2:$("#phone-nonconformation")
+    }
   }
 });
 

@@ -92,6 +92,9 @@ textarea {
     font-weight: 600;
 }
 
+.centered{
+  margin:0 auto;
+}
 
 .request-route {
   display:block;
@@ -229,6 +232,10 @@ textarea {
 }
 
 #header-container{
+  opacity: 1;
+}
+
+#footer-container{
   opacity: 1;
 }
 

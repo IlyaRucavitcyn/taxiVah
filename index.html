@@ -70,9 +70,9 @@
             <div id="screen-container" class="block">
                 <div id="map" class="map" style=""></div>
                 <div class="marker" style=""></div>
-                <a class="request-route mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="#!/request" style="">
+                <!-- <a class="request-route mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="#!/request" style="">
                       GET A CAR
-                </a>
+                </a> -->
             </div>
 
             <div id="self-location-container" class="block">
@@ -90,13 +90,13 @@
                 </div>
               </div>
 
-                 <a id="phone-conformation" class="starting-route-phone-conf mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="" style="">
+                 <!-- <a id="phone-conformation" class="starting-route-phone-conf mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="">
                           CONFIRM THE PHONE
                  </a>
 
-                 <a id="phone-nonconformation" class="starting-route-phone-nonconf mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="" style="">
+                 <a id="phone-nonconformation" class="starting-route-phone-nonconf mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="">
                           REFUSE PHONE INSERTING
-                 </a>
+                 </a> -->
             </div>
 
             <div id="car-request-container" class="block">
@@ -113,7 +113,29 @@
             </div>
 
         </main>
-        <footer class="mdl-mini-footer"></footer>
+        <footer id="footer-container" class="mdl-mini-footer block">
+            <ul class="mdl-mini-footer__link-list centered">
+              <li>
+                <a id="phone-conformation" class=" mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                       CONFIRM
+                </a>
+                <!-- starting-route-phone-conf -->
+              </li>
+              <li>
+                <a id="car-getting" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" href="#!/request">
+                      GET A CAR
+                </a>
+                <!-- request-route -->
+              </li>
+              <li>
+                <a id="phone-nonconformation" class=" mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+                         REFUSE
+                </a>
+                <!-- starting-route-phone-nonconf -->
+              </li>
+            </ul>
+
+        </footer>
       </div>
 
 
