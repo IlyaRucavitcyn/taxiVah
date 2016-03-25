@@ -82,6 +82,16 @@ textarea {
   height: 50px;
   background: url('../location-pin-compact-flat/location-pin-compact-flat.svg') no-repeat;
 }
+.input-field{
+    position:absolute;
+    width:100%;
+    text-align:center;
+    top:50%;
+    transform: translate(0,-50%);
+    color:white;
+    font-weight: 600;
+}
+
 
 .request-route {
   display:block;
@@ -159,7 +169,7 @@ textarea {
 
 .car-request-adress-container-message{
   position: absolute;
-  top:50%;
+  top:55%;
   left: 50%;
   transform: translate(-50%, 0%);
   width: 300px;
