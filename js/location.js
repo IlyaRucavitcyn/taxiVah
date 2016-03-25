@@ -30,7 +30,7 @@ var Footer = Backbone.View.extend({
   },
   hideAll: function () {
     for (var key in this.objToHide){
-      this.objToHide[key].hide();
+       this.objToHide[key].hide();
     };
   },
   events:{
