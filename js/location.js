@@ -18,6 +18,8 @@ var CarRequest = Backbone.View.extend({
   }
 });
 
+
+
 var Locate = Backbone.View.extend({
   initialize: function (options) {
     this.createSelfLocation();
