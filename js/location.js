@@ -23,17 +23,24 @@ var CarRequest = Backbone.View.extend({
 });
 
 var Header = Backbone.View.extend({
-  initialize: function (options) {
-    this.router = options.router;
+  objToHide:{
+    $el1:$("#go-to-location"),
+    $el2:$("#return-starting-location")
+  },
+  showAll: function () {
+    for (var key in this.objToHide){
+      this.objToHide[key].show();
+    };
   },
   el:$("#header-container"),
   render: function (obj) {
+    this.showAll();
     $(this.el).addClass("active");
     if (arguments.length){
       for (var key in obj){
         obj[key].hide();
       }
-    };  
+    };
   }
 });
 
@@ -73,6 +80,7 @@ var Navig = Backbone.Router.extend({
     this.locate = new Locate({router:self});
     this.phonerequest = new PhoneRequest();
     this.carRequest = new CarRequest({router:self});
+    this.header = new Header();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (pos) {
           self.start.setMapCenter({lat:pos.coords.latitude, lng:pos.coords.longitude});
@@ -95,26 +103,33 @@ var Navig = Backbone.Router.extend({
     $(".block").removeClass("active");
     if(!localStorage.getItem('phone')&&!sessionStorage.getItem('visited')) {
         self.phonerequest.render();
+        self.header.render(self.phonerequest.hidingObj);
     } else {
         self.start.render();
+        self.header.render(self.start.hidingObj);
     }
   },
   startingLocation: function () {
     var self = this;
     $(".block").removeClass("active");
     this.start.render();
+    this.header.render(self.start.hidingObj);
     this.start.setMapCenter({
         lat: self.carRequestData.lat,
         lng: self.carRequestData.lng
     });
   },
   locating: function () {
+    var self =this;
     $(".block").removeClass("active");
     this.locate.render();
+    self.header.render(self.locate.hidingObj);
   },
   request:function () {
+    var self =this;
     $(".block").removeClass("active");
     this.carRequest.render();
+    this.header.render(self.carRequest.hidingObj);
   }
 });
 
