@@ -3,14 +3,22 @@ module.exports = function(grunt) {
   grunt.initConfig({
     concat: {
       dist: {
-        // the files to concatenate
-        src: './js/**/*.js',
-        // the location of the resulting JS file
-        dest: './src/bundle.js'
+        src: './js/src/*.js',
+        dest: './js/location.js'
       }
-    }
+    },
+    watch: {
+      scripts: {
+          files: ['./js/src/*.js'],
+          tasks: ['concat'],
+          options: {
+              spawn: false,
+          },
+      }
+  }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.registerTask('default', ['concat']);
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.registerTask('default', ['watch']);
 };
