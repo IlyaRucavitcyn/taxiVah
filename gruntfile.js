@@ -15,10 +15,21 @@ module.exports = function(grunt) {
               spawn: false,
           },
       }
-  }
+    },
+    unused: {
+      options: {
+        reference: './',
+        directory: ["index.html",'package.json'],
+        days: 30,
+        remove: false, // set to true to delete unused files from project
+        reportOutput:'./report.txt', // set to false to disable file output
+        fail: false // set to true to make the task fail when unused files are found
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-unused');
   grunt.registerTask('default', ['watch']);
 };

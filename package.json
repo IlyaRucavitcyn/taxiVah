@@ -17,6 +17,7 @@
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
+    "grunt-unused": "^0.2.3",
     "phonegap": "^5.5.2"
   }
 }
